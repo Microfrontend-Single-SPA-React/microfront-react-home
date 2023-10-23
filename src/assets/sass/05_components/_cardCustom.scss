@@ -1,4 +1,11 @@
 .card-custom {
+  box-shadow: $shadow-XL !important;
+  &__content {
+    height: 340px;
+    overflow-y: scroll;
+    max-height: auto;
+    @include scroll-bar;
+  }
   &__title {
     font-size: 20px;
     text-align: center;

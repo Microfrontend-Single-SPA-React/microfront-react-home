@@ -7,7 +7,6 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -16,6 +15,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { Menu, ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { menu } from '../constants/menu_sidebar';
 import { Icon } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -94,8 +94,11 @@ interface LayoutCustomProps {
 
 const LayoutCustom: React.FC<LayoutCustomProps> = ({ children }) => {
   const theme = useTheme();
+  
   const [open, setOpen] = React.useState(false);
-
+  
+  const navigate = useNavigate();
+  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -103,11 +106,13 @@ const LayoutCustom: React.FC<LayoutCustomProps> = ({ children }) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  
+  const redirectToView = (path: string) => navigate(path);
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} className='layout-custom__app-bar'>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -132,14 +137,14 @@ const LayoutCustom: React.FC<LayoutCustomProps> = ({ children }) => {
             {theme.direction === 'rtl' ? <ChevronRight /> : <ChevronLeft />}
           </IconButton>
         </DrawerHeader>
-        <Divider />
-        <List>
+        <List className='layout-custom__list'>
           {menu.map((item, index) => (
             <ListItem
               key={item.name}
               disablePadding
               sx={{ display: 'block' }}
               className={`layout-custom__menu ${item.path == location.pathname ? 'layout-custom__menu--active' : ''}`}
+              onClick={ () => redirectToView(item.path) }
             >
               <ListItemButton
                 sx={{

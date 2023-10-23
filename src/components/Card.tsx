@@ -8,7 +8,7 @@ interface CardCustomProps {
 
 const CardCustom: React.FC<CardCustomProps> = ({ title, description, img }) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card className='card-custom' sx={{ maxWidth: 345, maxHeight: 800 }}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -16,7 +16,7 @@ const CardCustom: React.FC<CardCustomProps> = ({ title, description, img }) => {
           image={img}
           alt="green iguana"
         />
-        <CardContent>
+        <CardContent className='card-custom__content'>
           <h2 className='card-custom__title'>{title}</h2>
           <h6 className="card-custom__description">{description}</h6>
         </CardContent>
