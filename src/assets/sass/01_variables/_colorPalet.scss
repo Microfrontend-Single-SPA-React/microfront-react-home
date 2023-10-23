@@ -1,0 +1,57 @@
+@import "./colors";
+
+// Primario,secundario y terciario.
+
+$color-primary-palet: $color-blue-base !default;
+$color-primary-darker-palet: $color-blue-darker !default;
+$color-primary-dark-palet: $color-blue-dark !default;
+$color-primary-light-palet: $color-blue-light !default;
+$color-primary-lighter-palet: $color-blue-lighter !default;
+
+$color-secondary-palet: $color-violet-base !default;
+$color-secondary-darker-palet: $color-violet-darker !default;
+$color-secondary-dark-palet: $color-violet-dark !default;
+$color-secondary-light-palet: $color-violet-light !default;
+$color-secondary-lighter-palet: $color-violet-lighter !default;
+
+$color-tertiary-palet: $color-bluesky-base !default;
+$color-tertiary-darker-palet: $color-bluesky-darker !default;
+$color-tertiary-dark-palet: $color-bluesky-dark !default;
+$color-tertiary-light-palet: $color-bluesky-light !default;
+$color-tertiary-lighter-palet: $color-bluesky-lighter !default;
+
+// Fondo y superficies
+
+$color-background-palet: $color-blue-backgrounds !default;
+$color-background-container-palet: $color-blue-backgrounds-containers !default;
+$color-background-disabled-palet: $color-blue-backgrounds-disabled !default;
+$color-background-hover-palet: $color-blue-backgrounds-hover !default;
+$color-background-tooltip-palet: $color-violet-dark !default;
+$color-background-avatar-palet: $color-blue-light !default;
+$color-background-chips-palet: $color-blue-dark !default;
+$color-background-numbers-stepper-palet: $color-violet-base !default;
+$color-background-inactive-palet: $color-grey-light !default;
+
+// Tipografía e iconografía
+
+$color-title-palet: $color-blue-title !default;
+$color-subtitle-palet: $color-bluesky-subtitle !default;
+$color-text-palet: $color-blue-text !default;
+$color-link-palet: $color-violet-base !default;
+$color-success-palet: $color-success-dark !default;
+$color-warning-palet: $color-warning-dark !default;
+$color-alert-palet: $color-alert-dark !default;
+$color-information-palet: $color-information-dark !default;
+
+// Complementarias
+
+$color-on-default-palet: $color-blue-on-default !default;
+$color-on-primary-palet: $color-blue-on-primary !default;
+$color-on-secondary-palet: $color-bluesky-on-secondary !default;
+$color-on-tertiary-palet: $color-violet-on-tertiary !default;
+$color-on-hover-palet: $color-blue-on-hover !default;
+$color-on-disabled-palet: $color-blue-on-disabled !default;
+$color-outline-success-palet: $color-success-base !default;
+$color-outline-warning-palet: $color-warning-base !default;
+$color-outline-alert-palet: $color-alert-base !default;
+$color-outline-information-palet: $color-information-base !default;

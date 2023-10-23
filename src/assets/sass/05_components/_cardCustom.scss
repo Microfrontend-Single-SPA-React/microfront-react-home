@@ -1,0 +1,12 @@
+.card-custom {
+  &__title {
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  &__description {
+    font-size: 16px;
+    color: $color-text;
+    text-align: justify;
+  }
+}

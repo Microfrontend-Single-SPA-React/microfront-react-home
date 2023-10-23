@@ -1,0 +1,24 @@
+.css-1ddsiuw-MuiListItemIcon-root {
+  color: unset !important;
+}
+.css-wa5fuu-MuiListItemIcon-root  {
+  color: unset !important;
+}
+.layout-custom {
+  &__menu {
+    color: $color-primary-darker;
+    font-weight: bold !important;
+    font-size: large !important;
+    &--active {
+      background-color: $color-primary;
+      color: $color-on-primary;
+    }
+
+    &__icon {
+      // filter: brightness(0) saturate(100%) invert(25%) sepia(64%) saturate(3171%) hue-rotate(224deg) brightness(96%) contrast(88%);
+      &--active {
+        filter: brightness(0) invert(1) !important;
+      }
+    }
+  }
+}
