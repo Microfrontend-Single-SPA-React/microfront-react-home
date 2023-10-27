@@ -1,5 +1,6 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
+// const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
@@ -14,13 +15,14 @@ module.exports = (webpackConfigEnv, argv) => {
       rules: [
         {
           test: /\.scss$/,
-          use: [
-            'style-loader',
-            'css-loader',
-            'sass-loader',
-          ],
+          use: ["style-loader", "css-loader", "sass-loader"],
         },
       ],
     },
+    // plugins: [
+    //   new HtmlWebpackPlugin({
+    //     template: "public/index.html", // Ruta al archivo HTML
+    //   }),
+    // ],
   });
 };
