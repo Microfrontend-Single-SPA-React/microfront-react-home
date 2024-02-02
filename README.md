@@ -31,8 +31,3 @@ npm install
 npm run dev
 ```
 
-### Compiles and hot-reloads for production
-
-```
-npm run serve
-```
