@@ -1,8 +1,8 @@
 # Microfront React
 
 ## Root Config
-
-The root config repository can be found [here](https://github.com/j17hernandez/microfront-react-root-config.git)
+> [!CAUTION]
+> The root config repository can be found [here](https://github.com/j17hernandez/microfront-react-root-config.git)
 
 
 ### SASS Pattern 7 - 1
