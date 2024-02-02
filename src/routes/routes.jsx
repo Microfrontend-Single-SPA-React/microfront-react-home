@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import index from "../views";
 import ErrorPage from "../components/error-page";
-import Notes from "../views/notes";
+import NotesView from "../views/notes";
 
 export const routes = createBrowserRouter([
   {
@@ -11,7 +11,7 @@ export const routes = createBrowserRouter([
   },
   {
     path: "/notes",
-    Component: Notes,
+    Component: NotesView,
     errorElement: <ErrorPage />,
   },
 ]);

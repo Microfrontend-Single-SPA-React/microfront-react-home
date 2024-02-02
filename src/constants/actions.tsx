@@ -1,6 +1,6 @@
 export const ACTIONS = {
   EDIT: 'edit',
-  SEE: 'see'
+  DELETE: 'delete'
 }
 
 export default {};

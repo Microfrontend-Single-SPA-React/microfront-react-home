@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardMedia, CardContent } from '@mui/material'
+import { Card, CardActionArea, CardMedia, CardContent, CardHeader, } from '@mui/material'
 
 interface CardCustomProps {
   title: string,
@@ -8,16 +8,17 @@ interface CardCustomProps {
 
 const CardCustom: React.FC<CardCustomProps> = ({ title, description, img }) => {
   return (
-    <Card className='card-custom' sx={{ maxWidth: 345, maxHeight: 800 }}>
+    <Card className='card-custom' sx={{  maxHeight: 800 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="220"
           image={img}
-          alt="green iguana"
+          alt={title}
         />
+        <CardHeader className='card-custom__title' title={ title} />
+
         <CardContent className='card-custom__content'>
-          <h2 className='card-custom__title'>{title}</h2>
           <h6 className="card-custom__description">{description}</h6>
         </CardContent>
       </CardActionArea>

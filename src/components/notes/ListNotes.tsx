@@ -1,19 +1,23 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useSelector } from "react-redux";
 import { notes } from "../../store/reducer/notes-reducer";
-import {Check as CheckIcon, Clear as ClearIcon} from '@mui/icons-material';
+import {Check as CheckIcon, Clear as ClearIcon, DeleteOutlined as DeleteOutlinedIcon, EditNote as EditNoteIcon} from '@mui/icons-material';
 import { Dropdown } from '@mui/base/Dropdown';
 import { Menu } from '@mui/base/Menu';
 import { MenuButton as BaseMenuButton } from '@mui/base/MenuButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import { MenuItem as BaseMenuItem, menuItemClasses } from '@mui/base/MenuItem';
 import { styled } from '@mui/system';
 import { blue, grey } from '../../constants/colors';
-import { useState } from 'react';
 import { ACTIONS } from '../../constants/actions';
+import { Notes } from "../../interfaces/notes.interface"
 
-export default function ListNotes() {
+export default function ListNotes({ onEmit }) {
   const noteStore = useSelector(notes);
-  const [selectedValue, setSelectedValue] = useState('');
+
+  const callback = (datos: Notes, code: string) => {
+    onEmit(datos, code)
+  };
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -23,8 +27,8 @@ export default function ListNotes() {
       return params.value ? <CheckIcon style={{ color: 'green' }} /> : <ClearIcon style={{ color: 'red' }} />;
     },},
     {
-      field: 'options', headerName: 'Options', width: 160, renderCell: () => {
-        return <MenuSimple></MenuSimple>
+      field: 'options', headerName: 'Options', width: 160, renderCell: (params) => {
+        return <MenuSimple onEmitItem={callback} item={params.row}></MenuSimple>
       }
     }
   ];
@@ -32,7 +36,6 @@ export default function ListNotes() {
 
   return (
     <div style={{ height: 400, maxWidth: '100%' }}>
-      {selectedValue}
       <DataGrid
         rows={rows}
         columns={columns}
@@ -48,24 +51,29 @@ export default function ListNotes() {
 }
 
 
-function MenuSimple() {
+function MenuSimple({ onEmitItem, item }) {
+
   const handleMenuClick = (menuItem: string) => {
     return () => {
-      switch(menuItem) {
-        case ACTIONS.EDIT:
-          console.log(menuItem);
-          break
-      }
+      onEmitItem(item, menuItem);
     };
   };
 
   return (
     <Dropdown>
-      <MenuButton>Options</MenuButton>
+      <MenuButton data-testid="open_options">Options </MenuButton>
       <Menu slots={{ listbox: Listbox }}>
-        <MenuItem onClick={handleMenuClick(ACTIONS.EDIT)}>Edit</MenuItem>
-        <MenuItem onClick={handleMenuClick(ACTIONS.SEE)}>
-          See
+        <MenuItem data-testid="edit_note" onClick={handleMenuClick(ACTIONS.EDIT)}>
+          <ListItemIcon>
+            <EditNoteIcon fontSize="small" />
+          </ListItemIcon>
+          Edit
+        </MenuItem>
+        <MenuItem className='menu-item' onClick={handleMenuClick(ACTIONS.DELETE)}>
+           <ListItemIcon>
+            <DeleteOutlinedIcon fontSize="small" />
+          </ListItemIcon>
+          Delete
         </MenuItem>
       </Menu>
     </Dropdown>

@@ -1,5 +1,10 @@
 # Microfront React
 
+## Root Config
+
+The root config repository can be found [here] (https://github.com/j17hernandez/microfront-react-root-config.git)
+
+
 ### SASS Pattern 7 - 1
 
 Each folder must contain a file named \_module.scss with the imports of the existing files in that folder, the structure for the creation of new files will be the following, where, as its name indicates the files will be stored in its respective folder.

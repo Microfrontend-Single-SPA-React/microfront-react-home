@@ -1,4 +1,4 @@
-@mixin scroll-bar($size: 5px, $color: $color-primary-light) {
+@mixin scroll-bar($size: 7px, $color: $color-primary-light) {
   scrollbar-width: auto;
   scrollbar-color: $color $color !important;
 

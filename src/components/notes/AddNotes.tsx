@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -9,13 +9,14 @@ import {
   TextField,
 } from '@mui/material';
 import TextArea from '../text-area';
-import { noteAdded, noteCount } from '../../store/reducer/notes-reducer';
+import { noteAdded, noteCount, updatedNote } from '../../store/reducer/notes-reducer';
 import { useDispatch, useSelector } from 'react-redux';
+import { AddNotesProps } from "../../interfaces/notes.interface";
 
-export default function AddNotes({ open, handleClose }) {
+const AddNotes: React.FC<AddNotesProps> = ({ open, item, handleClose }) => {
   const dispatch = useDispatch();
   const count = useSelector(noteCount);
-
+  const [id, setId] = useState(0);
   const [textDescription, setTextDescription] = useState('');
   const [textTitle, setTextTitle] = useState('');
 
@@ -27,6 +28,17 @@ export default function AddNotes({ open, handleClose }) {
     const newTitle = event.target.value;
     setTextTitle(newTitle);
   };
+  useEffect(() => {
+    setTextDescription(item.description);
+    setTextTitle(item.title);
+    setId(item.id);
+    console.log('Component mounted');
+    // Clean up function (optional)
+    return () => {
+      // Perform cleanup if needed when the component is unmounted
+      console.log('Component unmounted');
+    };
+  }, [item]);
 
   const noteAdd = () => {
     dispatch(
@@ -38,6 +50,26 @@ export default function AddNotes({ open, handleClose }) {
     );
     close()
   };
+
+  const updateNote = () => {
+    dispatch(
+      updatedNote({
+        id: id,
+        title: textTitle,
+        description: textDescription,
+        completed: item.completed
+      })
+    );
+    close()
+  };
+
+  const save = () => {
+    if (item.id) {
+      updateNote();
+    } else {
+      noteAdd();
+    }
+  }
 
   const cleanFields = () => {
     setTextTitle('');
@@ -51,7 +83,7 @@ export default function AddNotes({ open, handleClose }) {
   return (
     <Dialog className="add_notes_modal" open={open} onClose={close} data-testid="add_notes_modal">
       <DialogTitle className="add_notes_modal__title" align="center">
-        Add a new note
+        {item.id ? 'Edit Note' : 'Add a new note'}
       </DialogTitle>
       <DialogContent>
         <Box
@@ -69,6 +101,7 @@ export default function AddNotes({ open, handleClose }) {
             variant="outlined"
             fullWidth
             onChange={handleTextTitle}
+            name="title_note"
           />
           <TextArea
             className="add_notes_modal__inputs__description"
@@ -84,7 +117,7 @@ export default function AddNotes({ open, handleClose }) {
         </Button>
         <Button
           data-testid="save_note"
-          onClick={noteAdd} variant="contained"
+          onClick={save} variant="contained"
         >
           Save
         </Button>
@@ -92,3 +125,5 @@ export default function AddNotes({ open, handleClose }) {
     </Dialog>
   );
 }
+
+export default AddNotes;

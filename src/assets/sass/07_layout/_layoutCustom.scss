@@ -1,5 +1,6 @@
 html {
   @include scroll-bar(8px, $color-primary-darker);
+  background-color: $color-white !important;
 }
 
 .css-1ddsiuw-MuiListItemIcon-root {
